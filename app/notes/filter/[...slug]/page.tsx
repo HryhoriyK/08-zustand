@@ -1,6 +1,6 @@
 
-import { fetchNotes } from '@/lib/api';
-import type { FetchNotesResponse } from '@/lib/api';
+import { fetchNotes } from '../../../../lib/api';
+import type { FetchNotesResponse } from '../../../../lib/api';
 import Notes from './Notes.client';
 import type { Metadata } from "next";
 

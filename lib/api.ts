@@ -68,20 +68,21 @@ export const fetchNoteById = async (id: string) => {
 };
 
 export type Tag = {
-  id: string,
-  title: string,
-  content: string,
-  createdAt: string,
-  updatedAt: string,
-  tag: string,
+  id: string;
+  name: string;
 }
 
-export const getTags = async () => {
+export const getTags = async (): Promise<Tag[]> => {
   try {
     const res = await axios.get<FetchNotesResponse>('/notes');
     const allNotes = res.data.notes;
+
     const uniqueTagNames = [...new Set(allNotes.map(note => note.tag))];
-    const tags = uniqueTagNames.map(tagName => ({ id: tagName, name: tagName }));
+
+    const tags = uniqueTagNames.map(tagName => ({
+        id: tagName,
+        name: tagName
+    }));
 
     return tags;
   } catch (error) {

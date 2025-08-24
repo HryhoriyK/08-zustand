@@ -1,6 +1,6 @@
 import css from './Header.module.css';
-import TagsMenu from '@/components/TagsMenu/TagsMenu';
-import { getTags } from '@/lib/api';
+import TagsMenu from '../TagsMenu/TagsMenu';
+import { getTags } from '@/lib/api'
 import Link from 'next/link';
 
 const Header = async () => {

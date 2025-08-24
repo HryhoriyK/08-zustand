@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import css from './default.module.css';
-import { getTags } from '@/lib/api';
+import { getTags } from '../../../../lib/api';
 
 const NotesSidebar = async () => {
   const menuItems = ["All", "Todo", "Work", "Personal", "Meeting", "Shopping"];

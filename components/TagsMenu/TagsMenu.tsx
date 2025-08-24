@@ -3,11 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import css from './TagsMenu.module.css';
-
-type Tag = {
-  id: string;
-  name: string;
-};
+import { Tag } from '@/lib/api';
 
 type Props = {
   tags: Tag[];

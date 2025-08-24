@@ -7,13 +7,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNoteStore } from '@/lib/store/noteStore';
 import css from './NoteForm.module.css';
 
-type NoteFormTag = {
-  id: string;
-  title: string;
-};
-
 type Props = {
-  tags: NoteFormTag[];
+  tags: Tag[];
 };
 
 const NoteForm = ({ tags }: Props) => {
@@ -24,14 +19,14 @@ const NoteForm = ({ tags }: Props) => {
   const [form, setForm] = useState<CreateNoteParams>({
     title: draft.title,
     content: draft.content,
-    tag: draft.tag || tags[0]?.title,
+    tag: draft.tag || tags[0]?.name,
   });
 
   useEffect(() => {
     setForm({
       title: draft.title,
       content: draft.content,
-      tag: draft.tag || tags[0]?.title,
+      tag: draft.tag || tags[0]?.name,
     });
   }, [draft, tags]);
 
@@ -99,8 +94,8 @@ const NoteForm = ({ tags }: Props) => {
             onChange={handleChange}
           >
             {tags.map((tag) => (
-              <option value={tag.title} key={tag.id}>
-                {tag.title}
+              <option value={tag.name} key={tag.id}>
+                {tag.name}
               </option>
             ))}
           </select>

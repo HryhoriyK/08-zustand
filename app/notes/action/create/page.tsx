@@ -24,19 +24,14 @@ export const metadata: Metadata = {
 const CreateNote = async () => {
     const tags = await getTags();
 
-    const mappedTags = tags.map(tag => ({
-    id: tag.id,
-    title: tag.name,
-  }));
-
-  return (
-    <main className={css.main}>
-      <div className={css.container}>
-        <h1 className={css.title}>Create note</h1>
-              <NoteForm tags={mappedTags} />
-      </div>
-    </main>
-  );
+    return (
+        <main className={css.main}>
+            <div className={css.container}>
+                <h1 className={css.title}>Create note</h1>
+                <NoteForm tags={tags} />
+            </div>
+        </main>
+    );
 };
 
 export default CreateNote;
