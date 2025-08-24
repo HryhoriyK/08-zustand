@@ -9,8 +9,6 @@ import type { FetchNotesResponse } from '../../../../lib/api';
 import { SearchBox } from '../../../../components/SearchBox/SearchBox';
 import { Pagination } from '../../../../components/Pagination/Pagination';
 import { NoteList } from '../../../../components/NoteList/NoteList';
-import { Modal } from '../../../../components/Modal/Modal';
-import  NoteForm  from '../../../../components/NoteForm/NoteForm';
 import Link from 'next/link';
 
 import css from './page.module.css';
@@ -24,7 +22,6 @@ export default function Notes({ initialData, tag }: NotesProps) {
   const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search, 300);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isModalOpen, setModalOpen] = useState(false);
 
   const perPage = 12;
 

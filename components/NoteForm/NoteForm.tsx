@@ -19,14 +19,14 @@ const NoteForm = ({ tags }: Props) => {
   const [form, setForm] = useState<CreateNoteParams>({
     title: draft.title,
     content: draft.content,
-    tag: draft.tag || tags[0]?.name,
+    tag: draft.tag || tags[0]?.name || "Todo",
   });
 
   useEffect(() => {
     setForm({
       title: draft.title,
       content: draft.content,
-      tag: draft.tag || tags[0]?.name,
+      tag: draft.tag || tags[0]?.name || "Todo",
     });
   }, [draft, tags]);
 
