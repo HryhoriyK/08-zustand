@@ -14,7 +14,7 @@ export interface FetchNotesResponse {
 export interface CreateNoteParams {
   title: string;
   content: string;
-  tag: Note['tag'];
+  tag: string;
 }
 
 export interface CreateNoteResponse {
@@ -52,7 +52,7 @@ export const getNotes = async (
 
 export const createNote = async (
   noteData: CreateNoteParams
-): Promise<CreateNoteResponse> => {
+)=> {
   const { data } = await axios.post<CreateNoteResponse>('/notes', noteData);
   return data;
 };
@@ -77,10 +77,15 @@ export type Tag = {
 }
 
 export const getTags = async () => {
-  const res = await axios.get<FetchNotesResponse>('/notes');
-  const allNotes = res.data.notes;
-  const uniqueTagNames = [...new Set(allNotes.map(note => note.tag))];
-  const tags = uniqueTagNames.map(tagName => ({ id: tagName, name: tagName }));
+  try {
+    const res = await axios.get<FetchNotesResponse>('/notes');
+    const allNotes = res.data.notes;
+    const uniqueTagNames = [...new Set(allNotes.map(note => note.tag))];
+    const tags = uniqueTagNames.map(tagName => ({ id: tagName, name: tagName }));
 
-  return tags;
+    return tags;
+  } catch (error) {
+    console.error("getTags error:", error);
+    return [];
+  }
 };

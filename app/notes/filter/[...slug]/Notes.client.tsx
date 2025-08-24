@@ -10,7 +10,8 @@ import { SearchBox } from '@/components/SearchBox/SearchBox';
 import { Pagination } from '@/components/Pagination/Pagination';
 import { NoteList } from '@/components/NoteList/NoteList';
 import { Modal } from '@/components/Modal/Modal';
-import { NoteForm } from '@/components/NoteForm/NoteForm';
+import  NoteForm  from '@/components/NoteForm/NoteForm';
+import Link from 'next/link';
 
 import css from './page.module.css';
 
@@ -53,20 +54,15 @@ export default function Notes({ initialData, tag }: NotesProps) {
           />
         )}
 
-        <button className={css.button} onClick={() => setModalOpen(true)}>
+        <Link href="/notes/action/create" className={css.button}>
           Create note +
-        </button>
+        </Link>
       </header>
 
       {!isLoading && !isError && Array.isArray(data?.notes) && data.notes.length > 0 && (
         <NoteList notes={data.notes} />
       )}
 
-      {isModalOpen && (
-        <Modal onClose={() => setModalOpen(false)}>
-          <NoteForm onCancel={() => setModalOpen(false)} />
-        </Modal>
-      )}
     </div>
   );
 }
