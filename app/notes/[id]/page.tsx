@@ -8,21 +8,22 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const note = await fetchNoteById(params.id);
-  
+  const {id} = params;
+  const note = await fetchNoteById(id);
+
   return {
-    title: note.title,
-    description: "View and edit your notes in NoteHub.",
+    title: `Note: ${note.title}`,
+    description: note.content.slice(0, 30),
     openGraph: {
-      title: note.title,
-      description: "View and edit your notes in NoteHub.",
+      title: `Note: ${note.title}`,
+      description: note.content.slice(0, 30),
       url: `https://notehub.example.com/notes/${note.id}`,
       images: [
         {
           url: "[https://ac.goit.global/fullstack/react/notehub-og-meta.jpg](https://ac.goit.global/fullstack/react/notehub-og-meta.jpg)",
           width: 1200,
           height: 630,
-          alt: "NoteHub Note",
+          alt: note.title,
         },
       ],
     },
